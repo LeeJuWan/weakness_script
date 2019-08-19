@@ -218,7 +218,7 @@ echo "10. /etc/services check" >> $cf 2>&1
 
 if [ "` ls -l /etc/services | awk '{print $1}'`" = -rw-r--r--. ]
 	then
-		echo "===> safe services permissions" >> $cf 2>&!
+		echo "===> safe services permissions" >> $cf 2>&1
 	else
 		echo "===> not safe services permissions" >> $cf 2>&1
 fi
@@ -282,7 +282,7 @@ echo "" >> $cf 2>&1
 echo "14. /etc/vsftpd/vsftpd anonymouse check..."
 echo "14. /etc/vsftpd/vsftpd anonymouse check" >> $cf 2>&1
 
-if [ "`cat /etc/vsftpd/vsftpd.conf | grep anonymous_enable | awk -F = '{print $2}'`" = yes ]
+if [ "`cat /etc/vsftpd/vsftpd.conf | grep anonymous_enable | awk -F = '{print $2}'`" = NO ]
 	then	
 		echo "===> safe ftp anonymouse not access" >> $cf 2>&1
 	else
@@ -394,7 +394,7 @@ echo "18. send mail version check" >> $cf 2>&1
 
 ver="`yum list installed | grep sendmail | awk '{print $1}'`"
 
-if [ -z $ver ]
+if [ -z "$ver" ]
 	then
 		echo "===> dont have sendmail" >> $cf 2>&1
 	else

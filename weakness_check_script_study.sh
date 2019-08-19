@@ -356,7 +356,8 @@ echo "17. DOS target services check..."
 echo "17. DOS target services check" >> $cf 2>&1
 
 echo "DOS 1. echo - dgram...."
-if [ "`cat /etc/xinetd.d/echo-dgram | grep disable | awk -F = '{print $2}'`" = yes ]
+# " yes" 의 의미는 본 서비스들의 파일에서도 disable = yes -> awk -F 구분자 출력시 " yes" 이렇게 한칸 공백 띄고 yes가 나오기때문에 조치를 취함
+if [ "`cat /etc/xinetd.d/echo-dgram | grep disable | awk -F = '{print $2}'`" = " yes" ] 
 	then
 		echo "===> safe echo service" >> $cf 2>&1
 	else
@@ -364,7 +365,7 @@ if [ "`cat /etc/xinetd.d/echo-dgram | grep disable | awk -F = '{print $2}'`" = y
 fi
 	
 echo "DOS 2. discard - dgram...."
-if [ "`cat /etc/xinetd.d/discard-dgram | grep disable | awk -F = '{print $2}'`" = yes ]
+if [ "`cat /etc/xinetd.d/discard-dgram | grep disable | awk -F = '{print $2}'`" = " yes" ]
 	then
 		echo "===> safe discard service" >>$cf 2>&1
 	else
@@ -372,7 +373,7 @@ if [ "`cat /etc/xinetd.d/discard-dgram | grep disable | awk -F = '{print $2}'`" 
 fi
 
 echo "DOS 3.daytime - dgram...."
-if [ "`cat /etc/xinetd.d/daytime-dgram | grep disable | awk -F = '{print $2}'`" = yes ]
+if [ "`cat /etc/xinetd.d/daytime-dgram | grep disable | awk -F = '{print $2}'`" = " yes" ]
 	then
 		echo "===> safe daytime service" >> $cf 2>&1
 	else
@@ -380,7 +381,7 @@ if [ "`cat /etc/xinetd.d/daytime-dgram | grep disable | awk -F = '{print $2}'`" 
 fi
 
 echo "DOS 4.chargen - dgram...."
-if [ "`cat /etc/xinetd.d/chargen-dgram | grep disable | awk -F = '{print $2}'`" = yes ]
+if [ "`cat /etc/xinetd.d/chargen-dgram | grep disable | awk -F = '{print $2}'`" = " yes" ]
 	then
 		echo "===> safe chargen service" >> $cf 2>&1
 	else
